@@ -1,0 +1,30 @@
+{
+	"db": {
+		"url": "{{ DB_URL }}",
+    "name": "cms",
+		"options": {
+			"useMongoClient": true,
+			"keepAlive": 1
+		},
+    "limits": {
+      "reqBodySize": "16MB"
+    }
+	},
+  "session": {
+    "secret": "secretPhrase",
+    "cookie": {
+      "path": "/",
+      "httpOnly": false,
+      {% if NODE_ENV === "production" %}"sameSite": "none",{% endif %}
+      "secure": {{ true if NODE_ENV === "production" else false }}
+    }
+  },
+  "mail": {
+    "service": "gmail",
+    "host": "{{ EMAIL_HOST }}",
+    "auth": {
+      "user": "{{ EMAIL_USER }}",
+      "pass": "{{ EMAIL_PASSWORD }}"
+    }
+  }
+}

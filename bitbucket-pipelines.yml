@@ -1,0 +1,10 @@
+image: alpine
+
+pipelines:
+  default:
+    - step:
+        name: Deploy to AWS EC2
+        deployment: production
+        script:
+          - apk update && apk add openssh
+          - ssh -o StrictHostKeyChecking=no $USERNAME@$HOST 'bash -s' < deploy.sh $REMOTE_PATH

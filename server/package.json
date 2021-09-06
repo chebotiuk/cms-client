@@ -1,0 +1,41 @@
+{
+  "name": "cms_node_v10.14.1",
+  "engines": {
+    "node": ">=12.15",
+    "npm": ">=6.4"
+  },
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "seed": "NODE_PATH=. node dist/seed.js",
+    "db": "./scripts/docker_db.sh",
+    "build": "node ./scripts/generate_config.js && tsc",
+    "watch": "tsc -w",
+    "debug": "NODE_PATH=. NODE_ENV=development node debug dist",
+    "dev": "NODE_PATH=. NODE_ENV=development npm run build && npm run watch & supervisor -- --inspect=0.0.0.0 dist",
+    "start": "NODE_PATH=. NODE_ENV=production npm run build && supervisor -i 'node_modules' dist"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "connect-mongo": "2.0.1",
+    "cookie": "^0.4.1",
+    "cookie-parser": "^1.4.3",
+    "crypto": "1.0.1",
+    "express": "4.17.1",
+    "express-session": "^1.17.1",
+    "mongodb": "3.1.10",
+    "nconf": "0.8.5",
+    "nodemailer": "6.4.8",
+    "nunjucks": "3.2.1",
+    "sharp": "^0.28.1",
+    "socket.io": "2.1.0",
+    "supervisor": "0.12.0",
+    "winston": "2.4.4"
+  },
+  "devDependencies": {
+    "@types/bson": "4.0.2",
+    "@types/mongodb": "3.5.25",
+    "@types/node": "^14.14.35",
+    "typescript": "3.9.5"
+  }
+}
